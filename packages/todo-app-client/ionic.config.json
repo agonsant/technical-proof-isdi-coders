@@ -1,0 +1,7 @@
+{
+  "name": "todo-app-client",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
