@@ -19,6 +19,7 @@
   "homepage": "https://github.com/agonsant/technical-proof-isdi-coders#readme",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/todo-app-client",
+    "packages/todo-app-backend"
   ]
 }
