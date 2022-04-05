@@ -1,52 +1,33 @@
-import {
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react';
-import { trash } from 'ionicons/icons';
-import { useEffect, useState } from 'react';
-import { TaskResponse } from '../../api/tasks/tasks.model';
+import { IonCol, IonContent, IonGrid, IonLoading, IonPage, IonRow } from '@ionic/react';
+import { useTasks } from '../../api/tasks/tasks.hooks';
+import AddTaskForm from '../../components/AddTaskForm';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import TaskList from '../../components/TaskList';
 import './Home.css';
 
 const Home: React.FC = () => {
-  const [todos, setTodos] = useState<TaskResponse[]>([]);
-  useEffect(() => {
-    async function doFetch() {
-      const result = await fetch('http://localhost:4000/tasks');
-      const data = await result.json();
-      setTodos(data);
-    }
-    doFetch();
-  }, []);
+  const { tasks, loading, createTask, deleteTask, updateTask } = useTasks(); // hook for managing the tasks and its operations
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Ionic React Todos</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header title="Todo APP for ISDI Coders using Ionic+React"></Header>
       <IonContent className="ion-padding">
-        {todos.length === 0 ? (
-          <div>No todos, add some!</div>
-        ) : (
-          <IonList>
-            {todos.map((todo) => (
-              <IonItem key={todo._id}>
-                <IonLabel>
-                  <h2>{todo.name}</h2>
-                </IonLabel>
-                <IonIcon data-icon="trash" icon={trash} color="danger" slot="end" />
-              </IonItem>
-            ))}
-          </IonList>
-        )}
+        <IonLoading isOpen={loading} message={'Realizando operación...'} />
+        <IonGrid>
+          <IonRow className="ion-justify-content-center">
+            <AddTaskForm onTaskCreation={createTask}></AddTaskForm>
+          </IonRow>
+          <IonRow>
+            <IonCol size="12">
+              <TaskList
+                tasks={tasks}
+                onDeleteTask={deleteTask}
+                onUpdateTask={updateTask}></TaskList>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
+      <Footer></Footer>
     </IonPage>
   );
 };

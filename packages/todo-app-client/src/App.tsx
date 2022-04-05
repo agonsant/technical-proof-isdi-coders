@@ -15,6 +15,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
 import { Redirect, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import TaskDetails from './pages/TaskDetail';
 /* Theme variables */
 import './theme/variables.css';
 
@@ -29,6 +30,9 @@ const App: React.FC = () => (
         </Route>
         <Route path="/home" exact={true}>
           <Home />
+        </Route>
+        <Route path="/tasks/:id" exact={true}>
+          <TaskDetails />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

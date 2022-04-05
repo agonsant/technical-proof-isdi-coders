@@ -7,7 +7,7 @@ beforeEach(() => {
   fetch.resetMocks();
 });
 
-test('Given the Home page, when there are no todos, a no todos message should show', async () => {
+test('Given the Home page, when there are no tasks, should show an special message', async () => {
   fetch.mockResponse(JSON.stringify([]));
   render(<Home />);
   await screen.findByText('No todos, add some!');
