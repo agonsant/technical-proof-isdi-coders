@@ -5,6 +5,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { enableFetchMocks } from 'jest-fetch-mock';
 
+// mockIonicReact();
 enableFetchMocks();
 
 // Mock matchmedia
@@ -13,7 +14,7 @@ window.matchMedia =
   function () {
     return {
       matches: false,
-      addListener: function () { },
-      removeListener: function () { },
+      addListener: function () {},
+      removeListener: function () {},
     };
   };
