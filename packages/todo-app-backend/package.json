@@ -1,7 +1,7 @@
 {
   "name": "todo-app-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express api for todo-app",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
